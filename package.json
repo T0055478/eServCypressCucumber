@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cypress run --spec \"**/*.feature\"",
     "test:all": "cypress run --spec \"**/*.features\"",
-    "cy:run": "./node_modules/.bin/cypress run"
+    "cy:run": "./node_modules/.bin/cypress run",
+    "cy:start": "./node_modules/.bin/cypress open"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
+  },
+  "devDependencies": {
+    "cypress-file-upload": "^4.0.7"
   }
 }

@@ -2,5 +2,6 @@
   "ignoreTestFiles": "*.js",
   "testFiles": "**/*.{feature,features}",
   "video": false,
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "experimentalSourceRewriting": true
 }

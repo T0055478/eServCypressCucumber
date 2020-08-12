@@ -1,0 +1,9 @@
+Feature: Login
+
+  I want to log in
+  Scenario: Logging in
+    Given I open the application
+    And I enter "DemoUser" in "#usernameInput"
+    And I enter "Thales1" in "#passwordInput"
+    And I click the button containing "Log In"
+    Then I am logged in
