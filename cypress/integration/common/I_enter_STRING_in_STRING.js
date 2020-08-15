@@ -28,13 +28,19 @@ And ('I select {string} from {string}', (value, selector) => {
 })
 
 Then (`I see {string} in the title`, title => {
-  // cy.wait ('@loggedIn')
+  cy.wait (2000)
   //Added to manage delay in loading
   cy.get('.mx-name-title').contains(title);
 });
 
 Then ('I confirm that {string} contains {string}', (selector, text) => {
-  cy.get(selector).contains(text)
+  cy.get(`.mx-name-${selector}`).contains(text)
+})
+
+Then ('I delete {string} from the datagrid', (title) => {
+  cy.get(`[title=${title}]`).click()
+  cy.contains ('Delete').click()
+  cy.contains ('OK').click()
 })
 
 // And ('I upload a file from {string}', (filepath) => {
