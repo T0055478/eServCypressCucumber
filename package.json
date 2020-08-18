@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/TheBrainFamily/cypress-cucumber-example#readme",
   "dependencies": {
-    "cypress": "^4.9.0",
-    "cypress-cucumber-preprocessor": "^2.5.0"
+    "cypress": "^4.12.1",
+    "cypress-cucumber-preprocessor": "^2.5.4"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
