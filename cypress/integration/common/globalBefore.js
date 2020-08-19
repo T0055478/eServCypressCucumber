@@ -1,3 +1,3 @@
 before(() => {
-  cy.wait(1000)
+  // cy.wait(1000)
 });

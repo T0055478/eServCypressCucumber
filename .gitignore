@@ -63,3 +63,9 @@ typings/
 cypress/videos
 cypress/screenshots
 cypress/fixtures/~$AnnexA5.xlsx
+cypress/fixtures/~$AnnexA5_Deactivation.xlsx
+cypress/fixtures/~$CRISPDuesIn.xlsx
+cypress/fixtures/AnnexA5_Deactivation.xlsx
+cypress/fixtures/AnnexA5.xlsx
+cypress/fixtures/CRISPDuesIn_Deactivate.xlsx
+cypress/fixtures/CRISPDuesIn.xlsx

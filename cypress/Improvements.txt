@@ -1,0 +1,2 @@
+1. Store data objects as JSON and send keys
+2. Tag tests to avoid repetition (e.g. in Location CRUD use of Annex A5)

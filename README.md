@@ -10,6 +10,3 @@ usage, please refer there as well - https://github.com/TheBrainFamily/cypress-cu
 npm install
 npm test
 ```  
-
-# login
-Covers login functionality

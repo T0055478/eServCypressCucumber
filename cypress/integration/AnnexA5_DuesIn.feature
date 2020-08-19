@@ -1,11 +1,7 @@
 Feature: E2E Upload Tests
 
   # Background:
-<<<<<<< Updated upstream
   Background: Log in as Admin
-=======
-  Scenario: Log in as Admin
->>>>>>> Stashed changes
     Given I open the application
     And I enter "MxAdmin" in "#usernameInput"
     And I enter "1" in "#passwordInput"
@@ -13,11 +9,7 @@ Feature: E2E Upload Tests
     Then I am logged in
 
   Scenario: Basic Annex A5 file upload
-<<<<<<< Updated upstream
     Given I see "e-Services Root Administrator Portal" in the title
-=======
-    # Given I see "e-Services Root Administrator Portal" in the title
->>>>>>> Stashed changes
     When I click the button containing "Data Management"
     And I click the button containing "Excel Import"
     Then I confirm that "text22" contains "Select upload details"
@@ -29,6 +21,7 @@ Feature: E2E Upload Tests
     Then I confirm that "AnnexA5ValidationText" contains "2 new equipment created"
     And I click the button containing "Continue"
     And I click the button containing "homepage"
+    And I click the button called "logOut"
 
   Scenario: Error Annex A5 file upload
     Given I see "e-Services Root Administrator Portal" in the title
@@ -39,6 +32,7 @@ Feature: E2E Upload Tests
     And I upload a "AnnexA5_ErrorTest" excel file
     And I click the button containing "Continue"
     Then I get 9 errors
+    And I click the button called "logOut"
 
   Scenario: Deactivation Annex A5 file upload
     Given I see "e-Services Root Administrator Portal" in the title
@@ -49,12 +43,12 @@ Feature: E2E Upload Tests
     And I upload a "AnnexA5_Deactivation" excel file
     And I click the button containing "Continue"
     Then I confirm that "AnnexA5ValidationText" contains "5 parts made inactive"
-    Then I confirm that "AnnexA5ValidationText" contains "2 equipment made inactive"
+    Then I confirm that "AnnexA5ValidationText" contains "1 equipment made inactive"
     And I click the button containing "Continue"
     And I click the button containing "homepage"
+    And I click the button called "logOut"
 
-<<<<<<< Updated upstream
-   Scenario: CRUD Locations
+   Scenario: Create Locations
      Given I see "e-Services Root Administrator Portal" in the title
      When I click the button containing "Data Management"
      And I click the button containing "Location"
@@ -66,58 +60,9 @@ Feature: E2E Upload Tests
      And I enter "B1000" in ".mx-name-textBox1"
      And I enter "Test Location" in ".mx-name-textBox2"
      And I click the button containing "Save"
-     And I click the button containing "B1000"
-     And I click the button containing "Edit"
-     And I enter "Second Test" in ".mx-name-textBox2"
-     And I click the button containing "Save"
+     And I click the button called "logOut"
   
-   Scenario: CRUD Equipment
-     Given I see "e-Services Root Administrator Portal" in the title
-     When I click the button containing "Data Management"
-     And I click the button containing "Equipment"
-     And I click the button containing "New"
-     And I enter "M1234" in ".mx-name-textBox1"
-     And I enter "Test Equipment" in ".mx-name-textBox2"
-     And I click the button containing "Save"
-     And I click the button containing "M1234"
-     And I click the button containing "Edit"
-     And I enter "Second Test" in ".mx-name-textBox2"
-     And I click the button containing "Save"
-     Then I delete "M1234" from the datagrid
-=======
-  # Scenario: CRUD Locations
-  #   Given I see "e-Services Root Administrator Portal" in the title
-  #   When I click the button containing "Data Management"
-  #   And I click the button containing "Location"
-  #   And I click the button containing "New"
-  #   And I enter "K1000" in ".mx-name-textBox1"
-  #   And I enter "Test Location" in ".mx-name-textBox2"
-  #   And I click the button containing "Save"
-  #   And I click the button containing "New"
-  #   And I enter "B1000" in ".mx-name-textBox1"
-  #   And I enter "Test Location" in ".mx-name-textBox2"
-  #   And I click the button containing "Save"
-  #   And I click the button containing "B1000"
-  #   And I click the button containing "Edit"
-  #   And I enter "Second Test" in ".mx-name-textBox2"
-  #   And I click the button containing "Save"
-  
-  # Scenario: CRUD Equipment
-  #   Given I see "e-Services Root Administrator Portal" in the title
-  #   When I click the button containing "Data Management"
-  #   And I click the button containing "Equipment"
-  #   And I click the button containing "New"
-  #   And I enter "M1234" in ".mx-name-textBox1"
-  #   And I enter "Test Equipment" in ".mx-name-textBox2"
-  #   And I click the button containing "Save"
-  #   And I click the button containing "M1234"
-  #   And I click the button containing "Edit"
-  #   And I enter "Second Test" in ".mx-name-textBox2"
-  #   And I click the button containing "Save"
-  #   Then I delete "M1234" from the datagrid
->>>>>>> Stashed changes
-
-  Scenario: Basic CRISP Dues In file upload
+   Scenario: Basic CRISP Dues In file upload
     Given I see "e-Services Root Administrator Portal" in the title
     When I click the button containing "Data Management"
     And I click the button containing "Excel Import"
@@ -128,20 +73,22 @@ Feature: E2E Upload Tests
     Then I confirm that "CRISPDuesInValidationText" contains "0 errors"
     Then I confirm that "CRISPDuesInValidationText" contains "3 new orders created"
     And I click the button containing "Continue"
-    And I click the button called "logOut"
   
-<<<<<<< Updated upstream
   Scenario: Close order CRISP Dues In file upload
     Given I see "e-Services Root Administrator Portal" in the title
     When I click the button containing "Data Management"
     And I click the button containing "Excel Import"
     Then I confirm that "text22" contains "Select upload details"
     And I select 'CRISP Upload' from 'select'
-    And I upload a "CRISPDuesIn" excel file
+    And I upload a "CRISPDuesIn_Deactivate" excel file
     And I click the button containing "Continue"
     Then I confirm that "CRISPDuesInValidationText" contains "0 errors"
     Then I confirm that "CRISPDuesInValidationText" contains "1 orders closed"
     And I click the button containing "Continue"
+    And I click the button containing "homepage"
+    And I click the button containing "Dues in tracker"
+    Then I get 3 Dues in
+    And  I click the button containing "Delete all"
     And I click the button called "logOut"
   
   Scenario: CRISP Dues In error file upload
@@ -150,54 +97,10 @@ Feature: E2E Upload Tests
     And I click the button containing "Excel Import"
     Then I confirm that "text22" contains "Select upload details"
     And I select 'CRISP Upload' from 'select'
-    And I upload a "CRISPDuesIn" excel file
+    And I upload a "CRISPDuesIn_ErrorTest" excel file
     And I click the button containing "Continue"
-    Then I confirm that "CRISPDuesInValidationText" contains "24 errors"
-    And I click the button containing "Continue"
+    Then I confirm that "CRISPDuesInValidationText" contains "22 errors"
     And I click the button called "logOut"
-
-    And I enter "DemoUser" in "#usernameInput"
-    And I enter "Thales1" in "#passwordInput"
-    And I click the button containing "Log In"
-    And I click the button containing "Dues In"
-    And I click the button containing "Dues in tracker"
-    Then I get 3 Dues in
-    And  I click the button containing "Delete all"
-=======
-  # Scenario: Close order CRISP Dues In file upload
-  #   Given I see "e-Services Root Administrator Portal" in the title
-  #   When I click the button containing "Data Management"
-  #   And I click the button containing "Excel Import"
-  #   Then I confirm that "text22" contains "Select upload details"
-  #   And I select 'CRISP Upload' from 'select'
-  #   And I upload a "CRISPDuesIn" excel file
-  #   And I click the button containing "Continue"
-  #   Then I confirm that "CRISPDuesInValidationText" contains "0 errors"
-  #   Then I confirm that "CRISPDuesInValidationText" contains "1 orders closed"
-  #   And I click the button containing "Continue"
-  #   And I click the button called "logOut"
-  
-  # Scenario: CRISP Dues In error file upload
-  #   Given I see "e-Services Root Administrator Portal" in the title
-  #   When I click the button containing "Data Management"
-  #   And I click the button containing "Excel Import"
-  #   Then I confirm that "text22" contains "Select upload details"
-  #   And I select 'CRISP Upload' from 'select'
-  #   And I upload a "CRISPDuesIn" excel file
-  #   And I click the button containing "Continue"
-  #   Then I confirm that "CRISPDuesInValidationText" contains "24 errors"
-  #   And I click the button containing "Continue"
-  #   And I click the button called "logOut"
-
-  #   And I enter "DemoUser" in "#usernameInput"
-  #   And I enter "Thales1" in "#passwordInput"
-  #   And I click the button containing "Log In"
-  #   And I click the button containing "Dues In"
-  #   And I click the button containing "Dues in tracker"
-  #   Then I get 3 Dues in
-  #   And  I click the button containing "Delete all"
->>>>>>> Stashed changes
-
 
   Scenario: Location/Equipment/Contract Part management and clean up
     Given I see "e-Services Root Administrator Portal" in the title
@@ -205,7 +108,6 @@ Feature: E2E Upload Tests
     And I click the button containing "Equipment"
     Then I delete "O978" from the datagrid
     Then I delete "W333" from the datagrid
-    Then I delete "A123" from the datagrid
     Then I delete "B234" from the datagrid
     And I click the button containing "Data Management"
     And I click the button containing "Parts"

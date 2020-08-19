@@ -13,11 +13,10 @@ Then (`I am logged in`, () => {
 
 //Generic navigation
 
-And (`I enter {string} in {string}`, (text, selectorName) => {
-  cy.get (selectorName).type (text)
-  });
+
 
 And (`I click the button containing {string}`, (buttonString) => {
+  cy.wait (200)
   cy.contains (buttonString).click({force:true})
 })
 
@@ -27,20 +26,25 @@ And (`I click the button called {string}`, (selector) => {
 })
 
 
+
+
+//Form filling
+And (`I enter {string} in {string}`, (text, selectorName) => {
+  cy.get (selectorName).type (text)
+  });
+
 And ('I select {string} from {string}', (value, selector) => {
   cy.get(selector).select(value)
 })
 
+And ('I toggle {string} radio buttons'), (name) => {
+  cy.get (`.mx-name-${name}`).children ('[value=false]').check()
+}
+
 //Generic tests
-
-// Then (`I see {string} in the title`, title => {
-//   cy.get('.mx-name-title').should("contain",title);
-// });
-
 Given (`I see {string} in the title`, title => {
-  cy.wait (2000)
+  cy.wait (200)
   cy.get('.mx-name-title').should("contain",title);
-  cy.wait (2000)
 });
 
 Then ('I confirm that {string} contains {string}', (selector, text) => {
@@ -54,6 +58,21 @@ Then ('I delete {string} from the datagrid', (title) => {
   cy.contains ('Delete').click()
   cy.contains ('OK').click()
   cy.wait (500)
+})
+
+And ('I highlight {string} in the datagrid', (title) => {
+  cy.wait (200)
+  cy.get(`[title=${title}]`).first().click()
+  cy.wait (500)
+})
+
+Then ('I see {string} in the datagrid', (title) => {
+  cy.wait (200)
+  cy.get(`[title=${title}]`).should("contain", title)
+})
+
+Then ('the datagrid has {int} rows', (rowNo) => {
+  cy.get('tbody').find('tr').should('have.length', rowNo)
 })
 
 // Excel uploads
