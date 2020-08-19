@@ -1,3 +1,4 @@
+# WIP
 Feature: CRISPIA Upload Test
 
   # Background:
@@ -35,6 +36,16 @@ Feature: CRISPIA Upload Test
     Then I get 12 errors
     And I click the button containing "Cancel"
 
+  Scenario: Confirm data upload
+    Given I see "e-Services Root Administrator Portal" in the title
+    When I click the button containing "Data Management"
+    And I click the button containing "Parts"
+    And I click the tab called "annexA5Tab"
+    Then I click the button called "searchButton6"
+    And I enter "999999999" in the widget element with ID "SearchInput_3"
+    And I click the widget element with ID "Button_6"
+    And I click the first row in the Contract Parts A5 datagrid
+    And I click the button called "actionButton18"
 
 
  

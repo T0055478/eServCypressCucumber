@@ -13,8 +13,6 @@ Then (`I am logged in`, () => {
 
 //Generic navigation
 
-
-
 And (`I click the button containing {string}`, (buttonString) => {
   cy.wait (200)
   cy.contains (buttonString).click({force:true})
@@ -25,11 +23,21 @@ And (`I click the button called {string}`, (selector) => {
   cy.get(`.mx-name-${selector}`).click()
 })
 
+And(`I click the tab called {string}`, (selector) => {
+  cy.wait (200)
+  cy.get(`.mx-name-${selector}`).click()
+})
 
+// Generic element that can be used for any widgets, e.g. datagrid buttons, tab containers, etc
+And(`I click the widget element with ID {string}`, (selector) => {
+  cy.wait (200)
+  cy.get(`#mxui_widget_${selector}`).click()
+})
 
 
 //Form filling
 And (`I enter {string} in {string}`, (text, selectorName) => {
+  cy.wait (200)
   cy.get (selectorName).type (text)
   });
 
@@ -73,6 +81,11 @@ Then ('I see {string} in the datagrid', (title) => {
 
 Then ('the datagrid has {int} rows', (rowNo) => {
   cy.get('tbody').find('tr').should('have.length', rowNo)
+})
+
+And(`I enter {string} in the widget element with ID {string}`, (text, selector) => {
+  cy.wait (200)
+  cy.get(`#mxui_widget_${selector}`).type(text)
 })
 
 // Excel uploads
