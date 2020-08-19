@@ -21,7 +21,7 @@ And (`I click the button containing {string}`, (buttonString) => {
 })
 
 And (`I click the button called {string}`, (selector) => {
-  cy.wait (200)
+  cy.wait (1000)
   cy.get(`.mx-name-${selector}`).click()
 })
 
