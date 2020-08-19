@@ -70,7 +70,7 @@ And ('I highlight {string} and {string} in the datagrid', (title1, title2) => {
   cy.wait (200)
   cy.get(`[title=${title1}]`).first().click()
   cy.get (`[title=${title2}]`).type('{ctrl}').first().click()
-  cy.wait (500)
+  cy.wait (200)
 })
 
 Then ('I see {string} in the datagrid', (title) => {
