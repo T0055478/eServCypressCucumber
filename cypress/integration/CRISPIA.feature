@@ -35,15 +35,6 @@ Feature: CRISPIA Upload Test
     Then I get 12 errors
     And I click the button containing "Cancel"
 
-  # Background
-  Background: Log in as User
-    Given I open the application
-    And I enter "DemoUser" in "#usernameInput"
-    And I enter "Thales1" in "#passwordInput"
-    And I click the button containing "Log In"
-    Then I am logged in
-
-  Scenario: Confirm CRISPIA details
 
 
  
