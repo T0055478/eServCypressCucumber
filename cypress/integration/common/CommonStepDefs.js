@@ -19,8 +19,14 @@ And (`I click the button containing {string}`, (buttonString) => {
 })
 
 And (`I click the button called {string}`, (selector) => {
-  cy.wait (1000)
+  cy.wait (200)
   cy.get(`.mx-name-${selector}`).click()
+})
+
+And (`I click the button called {string} and wait {int}`, (selector, wait) => {
+  cy.wait (200)
+  cy.get(`.mx-name-${selector}`).click()
+  cy.wait (wait)
 })
 
 And(`I click the tab called {string}`, (selector) => {
@@ -45,9 +51,9 @@ And ('I select {string} from {string}', (value, selector) => {
   cy.get(selector).select(value)
 })
 
-And ('I toggle {string} radio buttons'), (name) => {
+And ('I toggle {string} radio buttons', (name) => {
   cy.get (`.mx-name-${name}`).children ('[value=false]').check()
-}
+})
 
 //Generic tests
 Given (`I see {string} in the title`, title => {
@@ -55,12 +61,17 @@ Given (`I see {string} in the title`, title => {
   cy.get('.mx-name-title').should("contain",title);
 });
 
+Then (`I see {string} in the header`, title => {
+  cy.wait (500)
+  cy.get('h4').should("contain",title);
+});
+
+
 Then ('I confirm that {string} contains {string}', (selector, text) => {
   cy.get(`.mx-name-${selector}`).contains(text)
 })
 
 // Datagrids
-
 Then ('I delete {string} from the datagrid', (title) => {
   cy.get(`[title=${title}]`).first().click()
   cy.contains ('Delete').click()
@@ -68,17 +79,17 @@ Then ('I delete {string} from the datagrid', (title) => {
   cy.wait (500)
 })
 
-And ('I highlight {string} in the datagrid', (title) => {
+And ('I highlight {int} items in the datagrid called {string} and click', (num, name) => {
   cy.wait (200)
-  cy.get(`[title=${title}]`).first().click()
+  cy.get('.mx-name-${name}').find().click()
   cy.wait (200)
 })
 
-And ('I highlight {string} and {string} in the datagrid', (title1, title2) => {
+And ('I highlight {string} and {string} in the datagrid and click', (title1, title2) => {
   cy.wait (200)
-  cy.get(`[title=${title1}]`).first().click()
-  cy.get (`[title=${title2}]`).type('{ctrl}').first().click()
+  cy.get(`[title=${title1}]`).get (`[title=${title2}]`).click({ctrlKey:true})
   cy.wait (200)
+  // THIS DOES NOT WORK (NO IDEA WHY)
 })
 
 Then ('I see {string} in the datagrid', (title) => {
@@ -86,13 +97,32 @@ Then ('I see {string} in the datagrid', (title) => {
   cy.get(`[title=${title}]`).should("contain", title)
 })
 
+Then ('I see {string} in the datagrid called {string}', (title, name) => {
+  cy.wait (200)
+  cy.get(`.mx-name-${name}`).should("contain", `[title=${title}]`)
+})
+
 Then ('the datagrid has {int} rows', (rowNo) => {
   cy.get('tbody').find('tr').should('have.length', rowNo)
 })
 
-And(`I enter {string} in the widget element with ID {string}`, (text, selector) => {
+Then ('the datagrid called {string} has {int} rows', (name, rowNo) => {
+  cy.get(`.mx-name-${name} tbody`).find('tr').should('have.length', rowNo + 1)
+})
+
+And ('I highlight {string} in the datagrid {string}', (title, datagrid) => {
   cy.wait (200)
-  cy.get(`#mxui_widget_${selector}`).type(text)
+  cy.get (datagrid).find(`[title=${title}]`).first().click()
+})
+
+And ('I highlight {string} in the datagrid called {string}', (title, name) => {
+  cy.wait (200)
+  cy.get (`.mx-name-${name}`).find(`[title=${title}]`).first().click()
+})
+
+And ('I highlight {string} in the datagrid', (title) => {
+  cy.wait (200)
+  cy.get (`[title=${title}]`).first().click()
 })
 
 // Excel uploads
@@ -107,7 +137,7 @@ And ('I upload a {string} excel file', fileName => {
         mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         encoding: 'utf8'
       })
-})
+  })
 })
 
 

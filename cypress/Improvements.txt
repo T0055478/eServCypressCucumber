@@ -1,3 +1,5 @@
 1. Store data objects as JSON and send keys
 2. Tag tests to avoid repetition (e.g. in Location CRUD use of Annex A5)
 3. If tabbed containers are used, specific selectors may be required (if becomes too problematic, break out separate .js file and hardcode)
+4. How to select multiple items in a datagrid? CTRL click does not work.
+5. Make toggle button is LocationCRUD.js generic

@@ -1,6 +1,5 @@
- Feature: Equipment CRUD
+ Feature: Location CRUD
  
-  # Background:
   Background: Log in as Admin
     Given I open the application
     And I enter "MxAdmin" in "#usernameInput"
@@ -35,7 +34,7 @@
      And I highlight "B1000" in the datagrid
      And I click the button containing "Edit"
      And I enter "Second Test" in ".mx-name-textBox2"
-     And I toggle "Active" radio buttons
+     And I toggle Active radio button
      And I click the button containing "Save"
      And I click the button called "logOut"
     
@@ -46,10 +45,13 @@
      And I highlight "B1000" in the datagrid
      And I click the button containing "Edit"
      And I click the button containing "Manage NSNs"
-     And I highlight "200025602" in the datagrid
-     And I highlight "200025603" in the datagrid
-     And I click the button containing "Add"
-     Then I see "200025602" in the datagrid
+     Then I see "Add contract part" in the header
+     And I highlight "200025602" in the datagrid called "Available"
+     And I click the button called "Add"
+     And I click the button containing 'Close page'
+     And I click the button containing 'Save'
+     And I click the button containing "Edit"
+     Then I see "Edit Location" in the header
      Then I see "200025602" in the datagrid
     
     Scenario: Remove Contract Parts
@@ -59,10 +61,11 @@
      And I highlight "B1000" in the datagrid
      And I click the button containing "Edit"
      And I click the button containing "Manage NSNs"
-     And I highlight "200025602" in the datagrid
-     And I highlight "200025603" in the datagrid
+     Then I see "Add contract part" in the header
+     And I highlight "200025602" in the datagrid called 'Current'
      And I click the button containing "Remove"
-     Then the datagrid has 0 rows
+     And I click the button containing "Close page"
+     Then the datagrid called 'ContractPartGrid' has 0 rows
 
      Scenario: Data clean up
       Given I see "e-Services Root Administrator Portal" in the title

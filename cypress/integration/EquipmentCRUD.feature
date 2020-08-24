@@ -16,6 +16,7 @@
     And I select 'Annex A5' from 'select'
     And I upload a "AnnexA5" excel file
     And I click the button containing "Continue"
+    Then I confirm that "AnnexA5ValidationText" contains "0 errors"
     And I click the button containing "Continue"
     And I click the button containing "homepage"
     And I click the button called "logOut"
@@ -27,6 +28,7 @@
      And I click the button containing "New"
      And I enter "M123" in ".mx-name-textBox1"
      And I enter "Test Equipment" in ".mx-name-textBox2"
+     And I toggle Active radio button
      And I click the button containing "Save"
      And I highlight "M123" in the datagrid
      And I click the button containing "Edit"
@@ -41,10 +43,14 @@
      And I highlight "M123" in the datagrid
      And I click the button containing "Edit"
      And I click the button containing "Manage NSNs"
-     And I highlight "200025602" and "200025603" in the datagrid
-     And I click the button containing "Add"
+     Then I see "Add contract part" in the header
+     And I highlight "200025602" in the datagrid called "Available"
+     And I click the button called "Add"
+     And I click the button containing 'Close page'
+     And I click the button containing 'Save'
+     And I click the button containing "Edit"
+     Then I see "Edit Equipment" in the header
      Then I see "200025602" in the datagrid
-     Then I see "200025603" in the datagrid
     
     Scenario: Remove Contract Parts
      Given I see "e-Services Root Administrator Portal" in the title
@@ -53,9 +59,11 @@
      And I highlight "M123" in the datagrid
      And I click the button containing "Edit"
      And I click the button containing "Manage NSNs"
-     And I highlight "200025602" and "200025603" in the datagrid
+     Then I see "Add contract part" in the header
+     And I highlight "200025602" in the datagrid called 'Current'
      And I click the button containing "Remove"
-     Then the datagrid has 0 rows
+     And I click the button containing "Close page"
+     Then the datagrid called 'ContractPartGrid' has 0 rows
 
      Scenario: Data clean up
       Given I see "e-Services Root Administrator Portal" in the title
