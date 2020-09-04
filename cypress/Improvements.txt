@@ -3,3 +3,4 @@
 3. If tabbed containers are used, specific selectors may be required (if becomes too problematic, break out separate .js file and hardcode)
 4. How to select multiple items in a datagrid? CTRL click does not work.
 5. Make toggle button is LocationCRUD.js generic
+6. Read only control editability settings cannot be used with .contains()

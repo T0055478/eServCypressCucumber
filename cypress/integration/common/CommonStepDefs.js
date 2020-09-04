@@ -34,6 +34,11 @@ And(`I click the tab called {string}`, (selector) => {
   cy.get(`.mx-name-${selector}`).click()
 })
 
+// Generic wait period to avoid creating new steps
+And(`I wait for {int}`, (number) => {
+  cy.wait(number)
+})
+
 // Generic element that can be used for any widgets, e.g. datagrid buttons, tab containers, etc
 And(`I click the widget element with ID {string}`, (selector) => {
   cy.wait (200)
@@ -45,8 +50,13 @@ And(`I click the widget element with ID {string}`, (selector) => {
 And (`I enter {string} in {string}`, (text, selectorName) => {
   cy.wait (200)
   cy.get (selectorName).type (text)
-  });
+  })
 
+And (`I enter {string} in the {string} field`, (text, selectorName) => {
+  cy.wait (200)
+  cy.get (`.mx-name-${selectorName}`).type (text)
+  })
+  
 And ('I select {string} from {string}', (value, selector) => {
   cy.get(selector).select(value)
 })
@@ -59,16 +69,25 @@ And ('I toggle {string} radio buttons', (name) => {
 Given (`I see {string} in the title`, title => {
   cy.wait (200)
   cy.get('.mx-name-title').should("contain",title);
-});
+})
+
+Given (`I see the {string} page title`, (name) => {
+  cy.wait (200)
+  cy.get(`.mx-name-${name}`);
+})
 
 Then (`I see {string} in the header`, title => {
   cy.wait (500)
   cy.get('h4').should("contain",title);
-});
+})
 
 
 Then ('I confirm that {string} contains {string}', (selector, text) => {
   cy.get(`.mx-name-${selector}`).contains(text)
+})
+
+Then ('I confirm that the text contains {string}', (text) => {
+  cy.get(`.mx-text`).contains(text)
 })
 
 // Datagrids
