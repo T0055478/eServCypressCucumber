@@ -40,6 +40,10 @@ And(`I click the widget element with ID {string}`, (selector) => {
   cy.get(`#mxui_widget_${selector}`).click()
 })
 
+And(`I enter {string} in the widget element with ID {string}`, (text, selector) => {
+  cy.wait (200)
+  cy.get(`#mxui_widget_${selector}`).type (text)
+})
 
 //Form filling
 And (`I enter {string} in {string}`, (text, selectorName) => {
@@ -53,6 +57,10 @@ And ('I select {string} from {string}', (value, selector) => {
 
 And ('I toggle {string} radio buttons', (name) => {
   cy.get (`.mx-name-${name}`).children ('[value=false]').check()
+})
+
+And ('I toggle Active radio button', () => {
+  cy.get(`[value="false"]`).first().click()
 })
 
 //Generic tests
@@ -99,7 +107,7 @@ Then ('I see {string} in the datagrid', (title) => {
 
 Then ('I see {string} in the datagrid called {string}', (title, name) => {
   cy.wait (200)
-  cy.get(`.mx-name-${name}`).should("contain", `[title=${title}]`)
+  cy.get(`.mx-name-${name}`).should("contain", title)
 })
 
 Then ('the datagrid has {int} rows', (rowNo) => {
