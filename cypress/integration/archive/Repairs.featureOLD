@@ -1,17 +1,5 @@
-# WIP! This will not run
-
-Feature: E2E Repairs Order process
-
- # Background:
-  Background: Log in as Administrator
-    Given I open the application
-    # the following should be updated with the correct credentials:
-    And I enter "MxAdmin" in "#usernameInput"
-    And I enter "1" in "#passwordInput"
-    And I click the button containing "Log In"
-    Then I am logged in
-
-  Scenario: Administrator checks contract part details
+# WIP - will not run, use for reference 
+Scenario: Administrator checks contract part details
 
     # Given that I am logged into the Administrator e-Services portal
     # When I navigate to Data Management > Parts 
@@ -144,9 +132,6 @@ Feature: E2E Repairs Order process
     Then I confirm that the email was processed
     And I click the button containing "Close"
     And I click the button called "logOut"
-
-
-
 
 
 
