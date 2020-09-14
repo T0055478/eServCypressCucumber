@@ -65,12 +65,8 @@ And ('I select {string} from {string}', (value, selector) => {
   cy.get(selector).select(value)
 })
 
-And ('I toggle {string} radio buttons', (name) => {
-  cy.get (`.mx-name-${name}`).children ('[value=false]').check()
-})
-
-And ('I toggle {string} radio button to true', (name) => {
-  cy.get (`.mx-name-${name}`).children ('[value=true]').check()
+And ('I toggle {string} radio button', (name) => {
+  cy.get (`.mx-name-${name}`).children(`[value="false"]`).first().click()
 })
 
 And ('I toggle Active radio button', () => {

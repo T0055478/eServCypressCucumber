@@ -7,6 +7,7 @@ Feature: E2E NSN Access Configuration Test 2/3
     And I enter "Thales1" in "#passwordInput"
     And I click the button containing "Log In"
     Then I am logged in
+    And I click the button called "acceptDisclaimer"
 
   Scenario: Restricted access on Dues In Tracker for User 
     Given I see the "portalHeader" page title

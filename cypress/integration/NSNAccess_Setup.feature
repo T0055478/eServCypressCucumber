@@ -41,10 +41,10 @@ Feature: E2E NSN Access Configuration Test 1/3
   Scenario: Set Contract to NSN Configurable
     Given I see "e-Services Root Administrator Portal" in the title
     When I click the button containing "Contracts"
-    And I see "Thales Radio Provision Contract" in the datagrid
-    And I highlight "Thales Radio Provision Contract" in the datagrid
-    And I click the button containing "Edit Contract"
-    And I toggle "NSNConfigurable" radio button to true
+    And I highlight "123456789" in the datagrid
+    And I click the button containing "Edit"
+    And I toggle "NSNConfigurable" radio button
+    And I click the button containing "Save"
 
   Scenario: Set NSN access for User
     Given I see "e-Services Root Administrator Portal" in the title

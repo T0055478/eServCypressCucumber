@@ -26,10 +26,10 @@ Feature: E2E NSN Access Configuration Test 3/3
     And I click the button containing "Remove all"
     And I click the button containing "Administrator Portal"
     When I click the button containing "Contracts"
-    And I see "Thales Radio Provision Contract" in the datagrid
-    And I highlight "Thales Radio Provision Contract" in the datagrid
-    And I click the button containing "Edit Contract"
-    And I toggle "NSNConfigurable" radio button to true
+    And I highlight "123456789" in the datagrid
+    And I click the button containing "Edit"
+    And I toggle "NSNConfigurable" radio buttons
+    And I click the button containing "Save"
     And I click the button called "logOut"
     # No existing CRISP order delete functionality
 
