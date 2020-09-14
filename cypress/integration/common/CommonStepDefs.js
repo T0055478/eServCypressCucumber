@@ -69,6 +69,10 @@ And ('I toggle {string} radio buttons', (name) => {
   cy.get (`.mx-name-${name}`).children ('[value=false]').check()
 })
 
+And ('I toggle {string} radio button to true', (name) => {
+  cy.get (`.mx-name-${name}`).children ('[value=true]').check()
+})
+
 And ('I toggle Active radio button', () => {
   cy.get(`[value="false"]`).first().click()
 })
@@ -134,7 +138,7 @@ Then ('the datagrid has {int} rows', (rowNo) => {
 })
 
 Then ('the datagrid called {string} has {int} rows', (name, rowNo) => {
-  cy.get(`.mx-name-${name} tbody`).find('tr').should('have.length', rowNo + 1)
+  cy.get(`.mx-name-${name} tbody`).find('tr').should('have.length', rowNo)
 })
 
 And ('I highlight {string} in the datagrid {string}', (title, datagrid) => {
