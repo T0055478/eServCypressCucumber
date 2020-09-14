@@ -43,7 +43,7 @@ Feature: E2E NSN Access Configuration Test 1/3
     When I click the button containing "Contracts"
     And I highlight "123456789" in the datagrid
     And I click the button containing "Edit"
-    And I toggle "NSNConfigurable" radio button
+    And I toggle "NSNConfigurable" radio button to true
     And I click the button containing "Save"
 
   Scenario: Set NSN access for User

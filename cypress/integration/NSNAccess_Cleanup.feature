@@ -28,7 +28,7 @@ Feature: E2E NSN Access Configuration Test 3/3
     When I click the button containing "Contracts"
     And I highlight "123456789" in the datagrid
     And I click the button containing "Edit"
-    And I toggle "NSNConfigurable" radio buttons
+    And I toggle "NSNConfigurable" radio button to false
     And I click the button containing "Save"
     And I click the button called "logOut"
     # No existing CRISP order delete functionality
