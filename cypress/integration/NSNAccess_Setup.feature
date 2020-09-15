@@ -55,5 +55,8 @@ Feature: E2E NSN Access Configuration Test 1/3
     Then the datagrid called "NSNAccessSearch" has 8 rows
     Then the datagrid called "accessibleNSNs" has 0 rows
     And I click the button containing "Add all"
+    And I highlight "2510-12-359-4680" in the datagrid called "accessibleNSNs"
+    And I click the button called "removeSingle"
+    Then the datagrid called "accessibleNSNs" has 7 rows
     And I click the button called "logOut"
     
