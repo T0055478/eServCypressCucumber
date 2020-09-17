@@ -20,7 +20,7 @@ And (`I click the button containing {string}`, (buttonString) => {
 
 And (`I click the button called {string}`, (selector) => {
   cy.wait (200)
-  cy.get(`.mx-name-${selector}`).click()
+  cy.get(`.mx-name-${selector}`).click({ multiple: true })
 })
 
 And (`I click the button called {string} and wait {int}`, (selector, wait) => {
@@ -61,6 +61,11 @@ And (`I enter {string} in the {string} field`, (text, selectorName) => {
   cy.get (`.mx-name-${selectorName}`).type (text)
   })
   
+And (`I enter {string} in the {string} field box`, (text, selectorName) => {
+  cy.wait (200)
+  cy.get (`.mx-name-${selectorName} input`).click().type (text)
+  })
+  
 And ('I select {string} from {string}', (value, selector) => {
   cy.get(selector).select(value)
 })
@@ -98,6 +103,12 @@ Then ('I confirm that {string} contains {string}', (selector, text) => {
 
 Then ('I confirm that the text contains {string}', (text) => {
   cy.get(`.mx-text`).contains(text)
+})
+
+// List views
+Then ('I see {string} in the list', (value) => {
+  cy.wait(200)
+  cy.get('.mx-listview').should("contain", value)
 })
 
 // Datagrids

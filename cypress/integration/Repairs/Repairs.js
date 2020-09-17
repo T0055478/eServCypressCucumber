@@ -37,8 +37,11 @@ And ('I click the {string} status on the workflow widget', (value) => {
 // Drop down for RAG status on Repair details
 And ('I select {string} from the RAG status dropdown', (value) => {
     cy.wait(200)
-    cy.get('mx-name-dropDown1').within(() => {
-        cy.select(value)
+    cy.get('.mx-name-dropDown1 select').select(value)
     })
-})
 
+// Drop down for RAG status on Repair details
+And ('I select {string} from the Status dropdown', (value) => {
+    cy.wait(200)
+    cy.get('.mx-name-dropDown2 select').select(value)
+    })

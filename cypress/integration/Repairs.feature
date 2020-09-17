@@ -7,6 +7,7 @@ Feature: E2E Repairs Process Test
     And I enter "Thales1" in "#passwordInput"
     And I click the button containing "Log In"
     Then I am logged in
+    And I wait for 500
     And I click the button called "acceptDisclaimer"
 
   Scenario: User creates a return request
@@ -24,23 +25,22 @@ Feature: E2E Repairs Process Test
     And I click the button called "addReturnPart" 
     And I click the button called "continueReturn"
     And I click the button called "submitReturn"
-    And I wait for 4000
+    And I wait for 3000
     Then I confirm that the text contains "with an update"
     And I click the button containing "home page"
+    And I click the button called "logOut"
 
-  Scenario: User checks return request details
+  Scenario: User checks return request details and contracts
     Given I see the "portalHeader" page title
     And I click the button called "repairsPortal"
     And I click the button called "returnOverview"
-    And I click the button called "filterReturnSearch"
-    And I wait for 2000
-    # the following number should be updated based on the return request ID:
-    # WIP
-    And I enter "10000187" in the "searchReturn" field
-    And I click the button called "viewRequest"
-    Then I confirm that "wizardStep2" contains "Step 2 - Summary"
-    And I click the button containing "Back"
-    
+    And I wait for 1000
+    And I click the button called "actionButton1"
+    And I wait for 1000
+    And I see "Thales Radio Provision Contract" in the list
+    And I see "Thales Radar Provision Contract" in the list
+    And I see "Thales Satellite Provision Contract" in the list
+    And I click the button called "logOut"
 
   Scenario: User checks open repair orders
     Given I see the "portalHeader" page title
@@ -61,7 +61,6 @@ Feature: E2E Repairs Process Test
     Then I see "704409" in the datagrid
     Then I see "704410" in the datagrid
     Then I see "704411" in the datagrid
-    # WIP
     And I select "On time" from the RAG status dropdown
     Then I see "704410" in the datagrid
     And I select "Passed promise date" from the RAG status dropdown
@@ -72,14 +71,13 @@ Feature: E2E Repairs Process Test
     Then I see "704409" in the datagrid
     Then I see "704410" in the datagrid
     Then I see "704411" in the datagrid
-    And I select "Request received" from ".mx-name-dropDown2"
+    And I select "Request received" from the Status dropdown
     Then I see "704410" in the datagrid
     Then I see "704411" in the datagrid
     And I click the button containing "Repairs portal"
     And I click the button called "repairsOverview"
 
-    # go through all statuses on the pie chart widget:
-    And I click the RAG Status Chart 
+    # WIP - go through all statuses on the pie chart widget:
     
     # go through all statuses on the workflow widget:
     And I click the "Request_received" status on the workflow widget
@@ -184,3 +182,4 @@ Feature: E2E Repairs Process Test
     Then the datagrid has 1 rows
     And I click the button containing "Repairs portal"
     And I click the button called "repairsOverview"
+    

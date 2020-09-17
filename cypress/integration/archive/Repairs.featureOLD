@@ -1,4 +1,14 @@
 # WIP - will not run, use for reference 
+Feature: E2E Repairs Process Test
+
+  Background: Log in as User
+    Given I open the application
+    # the following should be updated with the correct credentials:
+    And I enter "DemoUser" in "#usernameInput"
+    And I enter "Thales1" in "#passwordInput"
+    And I click the button containing "Log In"
+    Then I am logged in
+    And I click the button called "acceptDisclaimer"
 
   Scenario: User creates a return request
     Given I see the "portalHeader" page title
@@ -24,45 +34,158 @@
     And I click the button called "repairsPortal"
     And I click the button called "returnOverview"
     And I click the button called "filterReturnSearch"
+    And I click the button called "filterReturnSearch"
     And I wait for 2000
     # the following number should be updated based on the return request ID:
-    And I enter "10000187" in the "searchReturn" field
+    And I enter "10000187" in the "searchReturn" field box
     And I click the button called "viewRequest"
     Then I confirm that "wizardStep2" contains "Step 2 - Summary"
     And I click the button containing "Back"
+    And I click the button called "logOut"
     
+
   Scenario: User checks open repair orders
-
-    # Given that I am logged into the e-Services Portal
-    # And I navigate to the Repairs Overview page
-    # When I click on the ROC Only button
-    # Then I see an updated overview of my Repair Orders showing only orders that have ROC numbers
-    # When I click the View details button
-    # Then I see the repair details for all my Repair Orders
-    # When I click a Status on the RAG Status Pie Chart on the overview page
-    # Then I see only repair orders with that status in the datagrid
-    # When I click a Repair Order Status on the repair order status widget 
-    # Then I see only repair orders with that status in the datagrid
-
-    Given I see the "repairPortalTitle" page title
+    Given I see the "portalHeader" page title
     And I click the button called "repairsPortal"
     And I click the button called "repairsOverview"
-    And I click the button called "showROCOnly"
-    Then the RAG Status Chart and Repair Order Status widget are updated
-    And I click the button called "showAll"
-    Then the RAG Status Chart and Repair Order Status widget are updated
-    And I click the button called "viewDetails"
-    Then I confirm that "repairDetails" contains "Repair details" 
-    And I click the button called "ROCOnly" 
-    And I click the button called "repairsPortalBreadcrumb"
+    And I wait for 2000
+    # should set to all repair orders:
+    Then the datagrid has 3 rows
+    And I click the button containing "View details"
+    And I wait for 2000
+    # should set to all repair orders + 1 (for search bar):
+    Then the datagrid has 4 rows
+    Then I click the button containing "Show ROC only"
+    # update as required:
+    Then I see "704410" in the datagrid
+    Then I see "704411" in the datagrid
+    Then I click the button containing "Show all"
+    Then I see "704409" in the datagrid
+    Then I see "704410" in the datagrid
+    Then I see "704411" in the datagrid
+    # WIP
+    And I select "On time" from the RAG status dropdown
+    Then I see "704410" in the datagrid
+    And I select "Passed promise date" from the RAG status dropdown
+    Then I see "704409" in the datagrid
+    And I select "Passed request date" from the RAG status dropdown
+    Then I see "704411" in the datagrid
+    And I click the button containing "Reset filter"
+    Then I see "704409" in the datagrid
+    Then I see "704410" in the datagrid
+    Then I see "704411" in the datagrid
+    And I select "Request received" from ".mx-name-dropDown2"
+    Then I see "704410" in the datagrid
+    Then I see "704411" in the datagrid
+    And I click the button containing "Repairs portal"
     And I click the button called "repairsOverview"
-    And I click on the RAG Status Chart 
-    Then I confirm that the RAG status in the datagrid matches what I clicked
-    And I click the button called "repairsPortalBreadcrumb"
+
+    # go through all statuses on the pie chart widget:
+    And I click the RAG Status Chart 
+    
+    # go through all statuses on the workflow widget:
+    And I click the "Request_received" status on the workflow widget
+    And I wait for 1000
+    # should set to the number in that status + 1 (for search bar):
+    Then the datagrid has 3 rows
+    And I click the button containing "Repairs portal"
     And I click the button called "repairsOverview"
-    And I click a status in the Repair Order Status widget
-    Then I confirm that the Order Status in the datagrid matches what I clicked
-    And I click the button called "logOut"
+    And I click the "Pending_return" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 2 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Item_received" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "In_survey" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Surveyed" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Customer_engagement" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Pending_repair" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "In_repair" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Repaired_pending_return" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "In_dispatch" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Dispatched" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Arrived" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Identified_BER" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Pending_BER_authorisation" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "BER_authorised" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Disposed" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
+    And I click the "Other" status on the workflow widget
+    And I wait for 1000
+    # update:
+    Then the datagrid has 1 rows
+    And I click the button containing "Repairs portal"
+    And I click the button called "repairsOverview"
 
   # Background:
   Background: Log in as Administrator
